@@ -1,0 +1,96 @@
+@import "./variables";
+@import "./color";
+@import "./typography";
+
+
+
+@mixin mobile {
+  @media (min-width: $mobile-breakpoint) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: $tablet-breakpoint) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: $desktop-breakpoint) {
+    @content;
+  }
+}
+
+@mixin h1Hero {
+  @include tablet {
+    font-size: $h1HeroHeader;
+    line-height: $h1HeroLine;
+  }
+}
+
+@mixin h1Header {
+  @include mobile {
+    font-size: $h1Header-mobile;
+    line-height: $h1Line-mobile;
+  }
+  @include tablet {
+    font-size: $h1Header;
+    line-height: $h1HeaderLine;
+  }
+}
+
+@mixin h2Header {
+  @include mobile {
+    font-size: $h2Header-mobile;
+    line-height: $h2Line-mobile;
+  }
+  @include tablet {
+    font-size: $h2Header;
+    line-height: $h2HeaderLine;
+  }
+}
+
+@mixin h3Header {
+  @include tablet {
+    font-size: $h3Subheader;
+    line-height: $h3SubheaderLine;
+  }
+}
+
+@mixin paragraph {
+  font-family: Avenir;
+  @include mobile {
+    font-size: $paragraph-mobile;
+    line-height: $paragraphLine-mobile;
+  }
+  @include tablet{
+    font-family: Avenir;
+    font-size: $paragraph;
+    line-height: $paragraphLine;
+  }
+}
+
+@mixin listContact {
+  font-family: Avenir;
+  @include mobile {
+    font-size: $listContact-mobile;
+    line-height: $listContactLine-mobile;
+  }
+  @include tablet {
+    font-family: Avenir;
+    font-size: $listContact;
+    line-height: $listContactLine;
+  }
+}
+
+@mixin labels {
+  @include mobile {
+    font-size: $labels-mobile;
+    line-height: $labelsLine-mobile;
+  }
+  @include tablet {
+    font-size: $labels;
+    line-height: $labelsLine;
+  }
+}

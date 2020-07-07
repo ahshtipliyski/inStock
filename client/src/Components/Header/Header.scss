@@ -1,0 +1,129 @@
+@import '../../partials/mixins';
+@import '../../partials/color';
+@import '../../partials/typography';
+
+
+.nav {
+  width: 100%;
+  background-color: $background;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+    width: 100%;
+    height: 90px;
+    position: relative;
+  @include tablet {
+    flex-direction: row;
+    height: 80px;
+  }
+
+  .nav__logo {
+      margin-left: 96px;
+      margin-right: 96px;
+      padding-top: 16px;
+    
+    @include tablet {
+      margin: auto 24px;
+      padding-top: 0;
+      
+    }
+    @include desktop {
+      margin-left: 125px;
+      margin-right: 56px;
+    }
+  }
+
+  &__container {
+      width: 100%;
+      position: relative;
+
+    .nav__menu {
+      display: flex;
+      margin: 0;
+      padding-top: 16px;
+    
+      @include tablet {
+        display: flex;
+        width: 160px;
+        margin: 0;
+        align-items: center;
+        padding: 0;
+      }
+
+      @include desktop {
+        width: 160px;
+      }
+
+      &--text {
+        @include h2Header;
+        padding-bottom: 12px;
+        width: 50%;
+        text-decoration: none;
+        list-style-type: none;
+        text-align: center;
+        padding: unset;
+
+        &--notActive {
+          padding-bottom: 0;
+          border-bottom: none;    
+        }
+
+        &--active {
+          font-weight: bold;
+          padding-bottom: 11px;
+          border-bottom: 4px solid white;
+        }
+      
+        @include tablet {
+          @include paragraph;
+          margin-left: 50px;
+          text-align: left;
+          width: 50%
+
+          &--notActive {
+            padding-bottom: 0;
+            border-bottom: none;
+          }
+
+          &--active {
+            font-weight: bold;
+            padding: 30px;
+            padding-bottom: 25px;
+            border-bottom: 4px solid white;
+          }
+        }
+
+        @include desktop {
+          @include paragraph;
+          width: 50%;
+          font-size: 2rem;
+
+          &--notActive {
+            padding-bottom: 0;
+            border-bottom: none;
+          }
+
+          &--active {
+            font-weight: bold;
+            padding: 30px;
+            padding-bottom: 25px;
+            border-bottom: 4px solid white;
+          }
+        }  
+
+        a:link {
+          text-decoration: none;
+         }
+
+        a:hover {
+          text-decoration: none;
+          list-style-type: none;
+        }
+        a:visited {
+          color: white;
+        }
+      }
+    }
+  }
+}
