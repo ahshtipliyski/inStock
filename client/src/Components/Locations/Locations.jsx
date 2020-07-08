@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../Locations/Locations.scss'
-import search from '../../assets/Icons/Icon-search.svg';
-import arrow from '../../assets/Icons/Icon-arrow-right.svg';
+import search from '../../Assets/Icons/Icon-search.svg';
+import arrow from '../../Assets/Icons/Icon-arrow-right.svg';
 
 
 export default class Locations extends React.Component {
