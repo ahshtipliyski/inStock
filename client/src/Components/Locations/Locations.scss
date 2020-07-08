@@ -201,4 +201,9 @@
         width: 184px;
       }
   }
+
+ &__arrow {
+   display: none;
+   @include mobile
+ }
 }
