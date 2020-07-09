@@ -10,17 +10,33 @@ const urlW = 'http://localhost:8080'
 
 class App extends React.Component {
   state = {
-    locationWarehouse: []
+    locationWarehouse: [],
+    inventory: []
   }
 
-  componentDidMount() {
+  initialMount() {
     axios.get(`${urlW}/warehouses`)
       .then(res => {
         const locationWarehouse = res.data;
         this.setState({ locationWarehouse });
         console.log(locationWarehouse)
       })
+      .catch(error => {
+        console.log(error)
+      }) 
+    axios.get(`${urlW}/inventory`)
+      .then(res => {
+        const inventory = res.data;
+        this.setState({ inventory });
+        //console.log(inventory)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
 
+  componentDidMount() {
+    this.initialMount();
   }
 
   render() {
@@ -34,7 +50,7 @@ class App extends React.Component {
               <Locations warehouse={this.state.locationWarehouse} />
             </Route> 
             <Route exact path="/inventory">
-              <Inventory />
+              <Inventory inventory={this.state.inventory} />
             </Route>
             <Route exact path="/inventory/:id">
               <Product />
