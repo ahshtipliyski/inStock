@@ -3,12 +3,12 @@ import React from 'react';
 import '../Locations/Locations.scss'
 import search from '../../Assets/Icons/Icon-search.svg';
 import arrow from '../../Assets/Icons/Icon-arrow-right.svg';
-
+import { v4 as uuidv4 } from 'uuid';
 
 export default class Locations extends React.Component {
   render() {
     const warehouse = this.props.warehouse
-    console.log(warehouse)
+    //console.log(warehouse)
 
     // console.log(name)
     return (
@@ -38,7 +38,7 @@ export default class Locations extends React.Component {
           warehouse.map((warehouse) => {
             return (
 
-              <div className="warehouse">
+              <div className="warehouse" key={uuidv4()}>
                 <div className="warehouse__container">
                   <div className="warehouse__name">
                     <h2 className="warehouse__name--title">{warehouse.name}</h2>
