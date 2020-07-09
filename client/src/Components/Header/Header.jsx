@@ -12,7 +12,7 @@ export default function Header() {
       </div>
       <div className="nav__container">
         <ul className=" nav__menu">
-          <li className="nav__menu--text    nav__menu--text--notActive">
+          <li className="nav__menu--text nav__menu--text--notActive">
             <Link to="/inventory">Inventory</Link>
           </li>
           <li className="nav__menu--text nav__menu--text--active">

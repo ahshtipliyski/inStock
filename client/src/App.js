@@ -5,6 +5,8 @@ import axios from 'axios';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import Inventory from '../src/Components/Inventory/Inventory';
 import Product from '../src/Components/Product/Product';
+import './App.scss';
+
 
 const urlW = 'http://localhost:8080'
 
@@ -19,7 +21,7 @@ class App extends React.Component {
       .then(res => {
         const locationWarehouse = res.data;
         this.setState({ locationWarehouse });
-        console.log(locationWarehouse)
+        //console.log(locationWarehouse)
       })
       .catch(error => {
         console.log(error)
@@ -28,7 +30,7 @@ class App extends React.Component {
       .then(res => {
         const inventory = res.data;
         this.setState({ inventory });
-        //console.log(inventory)
+        console.log(inventory)
       })
       .catch(error => {
         console.log(error)
@@ -41,7 +43,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="App">
         <Router>
           <Header />
           <Switch>
@@ -60,7 +62,6 @@ class App extends React.Component {
       </div>
     );
   }
-
 }
 
 export default App;
