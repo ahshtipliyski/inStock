@@ -12,7 +12,7 @@ export default function Product({inventory}) {
       <div className="product__info-body-container">
           <div className="product__description-container">
             <p className="product__info-title">Item Description</p>
-            <p className="product__info-content">item description here --- Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quibusdam!</p>
+            <p className="product__info-content">item description here --- Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quibusdam ---- </p>
           </div>
           <div className="product__order-info-container">
             <div>
