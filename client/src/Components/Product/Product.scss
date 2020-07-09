@@ -1,0 +1,10 @@
+@import '../../partials/mixins';
+@import '../../partials/color';
+
+.product {
+    &__info-body-container {
+        @include desktop {
+            display: flex;
+        }
+    }
+}
