@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import '../Locations/Locations.scss'
 import search from '../../Assets/Icons/Icon-search.svg';
 import arrow from '../../Assets/Icons/Icon-arrow-right.svg';
