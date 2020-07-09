@@ -1,7 +1,7 @@
 import React from "react";
 import Logo from '../../Assets/Logo/Logo-instock.svg';
 import '../Header/Header.scss';
-import { Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 
 export default function Header() {
@@ -12,16 +12,15 @@ export default function Header() {
       </div>
       <div className="nav__container">
         <ul className=" nav__menu">
-          <li className="nav__menu--text nav__menu--text--notActive">
-            <Link to="/inventory">Inventory</Link>
+          <li className="nav__menu--text">
+            <NavLink to="/inventory" activeClassName="nav__menu--text--active">Inventory</NavLink>
           </li>
-          <li className="nav__menu--text nav__menu--text--active">
-            <Link to="/warehouses">Locations</Link>
+          <li className="nav__menu--text">
+            <NavLink to="/warehouses" activeClassName="nav__menu--text--active">Locations</NavLink>
           </li>
         </ul>
       </div>
     </div>
   )
 }
-
 

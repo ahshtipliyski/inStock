@@ -24,7 +24,7 @@
       padding-top: 16px;
     
     @include tablet {
-      margin: auto 24px;
+      margin: auto 1.5rem;
       padding-top: 0;
       
     }
@@ -72,7 +72,7 @@
 
         &--active {
           font-weight: bold;
-          padding-bottom: 11px;
+          padding-bottom: 12px;
           border-bottom: 4px solid white;
         }
       
@@ -89,8 +89,7 @@
 
           &--active {
             font-weight: bold;
-            padding: 30px;
-            padding-bottom: 25px;
+            padding-bottom: 27px;
             border-bottom: 4px solid white;
           }
         }
@@ -98,7 +97,7 @@
         @include desktop {
           @include paragraph;
           width: 50%;
-          font-size: 2rem;
+          font-size: 16px;
 
           &--notActive {
             padding-bottom: 0;
@@ -107,8 +106,7 @@
 
           &--active {
             font-weight: bold;
-            padding: 30px;
-            padding-bottom: 25px;
+            padding-bottom: 27px;
             border-bottom: 4px solid white;
           }
         }  
