@@ -43,6 +43,7 @@ export default class Locations extends React.Component {
 			) {
 				console.log("please fill out entire form");
 			} else {
+				this.setState({ isOpen: false });
 				console.log("submitted successfully");
 				console.log(
 					this.state.name,
@@ -202,7 +203,12 @@ export default class Locations extends React.Component {
 									<button className='modal__save' type='submit'>
 										SAVE
 									</button>
-									<button className='modal__cancel'>CANCEL</button>
+									<button
+										className='modal__cancel'
+										onClick={() => this.setState({ isOpen: false })}
+									>
+										CANCEL
+									</button>
 								</div>
 							</form>
 						</div>
