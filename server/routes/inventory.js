@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const inventoryData = require("../data/inventory.json");
+const fileName = '../server/data/inventory.json';
 const fs = require('fs');
 // import { dirname } from 'path';
 // import { json } from 'express';
@@ -13,7 +14,7 @@ router.get("/:id", (req, res) => {
 	if (found) {
 		res.json(inventoryData.filter((item) => item.id === req.params.id));
 	} else {
-		res.status(404).json({ msg: `No item with ID o ${req.params.id}` });
+		res.status(404).json({ msg: `No item with ID: ${req.params.id}` });
 	}
 });
 
@@ -38,25 +39,34 @@ router.post('/', (req, res) => {
 			isInstock: req.body.isInstock,
 			description: req.body.description
 		})
+
+		// Add new inventory item to JSON
+
+		fs.writeFileSync(fileName, JSON.stringify(inventoryData), "utf8", err => {
+			if (err) {
+				console.log(err);
+			}
+		});
+		res.json(inventoryData)
 	}
 
 });
 
+//Delete Inventory Item
 
-
+router.delete("/:id", (req, res) => {
+	const found = inventoryData.some(item => item.id === req.params.id);
+	if (found) {
+		const newInventory = inventoryData.filter(item => item.id !== req.params.id);
+		res.json({
+			msg: `Deleted: ${req.params.id}`,
+			inventoryData: newInventory
+		})
+	} else {
+		res.status(404).json({
+			msg: `No item with ID: ${req.params.id}`
+		})
+	}
+})
 
 module.exports = router;
-
-
-
-
-
-
-
-// res.json(inventoryData)
-
-// fs.writeFileSync(
-// 	path.join(__dirname, '../data/inventory.json', 'utf8', function (err, data) {
-// 		data = JSON.parse(data);
-// 		console.log(data);
-// 		res.end(JSON.stringify(data));
