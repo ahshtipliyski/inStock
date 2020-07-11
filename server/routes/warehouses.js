@@ -2,6 +2,19 @@ const express = require('express');
 const router = express.Router();
 const warehouseData = require('../data/warehouses.json');
 
+
+//Get single warehouse
+router.get("/:id", (req, res) => {
+  const found = warehouseData.some((location) => location.id === req.params.id);
+
+
+  if (found) {
+    res.json(warehouseData.filter((location) => location.id === req.params.id));
+  } else {
+    res.status(404).json({ err: `Warehouse id ${req.prams.id}` });
+  }
+});
+
 // Get request for ALL warehouse
 
 router.get('/', (req, res) => {
@@ -29,7 +42,7 @@ router.post('/', (req, res) => {
         phone: req.body.contact.phone,
         email: req.body.contact.email
       },
-      inventoryCategories: "Paper, Crafts, Office supplies"
+      inventoryCategories: req.body.inventoryCategories
     })
   }
   res.json(warehouseData)

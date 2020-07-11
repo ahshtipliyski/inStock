@@ -21,11 +21,11 @@ class App extends React.Component {
       .then(res => {
         const locationWarehouse = res.data;
         this.setState({ locationWarehouse });
-        //console.log(locationWarehouse)
+        console.log(locationWarehouse)
       })
       .catch(error => {
         console.log(error)
-      }) 
+      })
     axios.get(`${urlW}/inventory`)
       .then(res => {
         const inventory = res.data;
@@ -47,10 +47,10 @@ class App extends React.Component {
         <Router>
           <Header />
           <Switch>
-          <Redirect exact from="/" to="/warehouses" />
+            <Redirect exact from="/" to="/warehouses" />
             <Route exact path="/warehouses">
               <Locations warehouse={this.state.locationWarehouse} />
-            </Route> 
+            </Route>
             <Route exact path="/inventory">
               <Inventory inventory={this.state.inventory} />
             </Route>
@@ -58,7 +58,7 @@ class App extends React.Component {
               <Product />
             </Route>
           </Switch>
-        </Router> 
+        </Router>
       </div>
     );
   }
