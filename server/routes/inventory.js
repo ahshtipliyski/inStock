@@ -1,6 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const inventoryData = require("../data/inventory.json");
+const fs = require('fs');
+// import { dirname } from 'path';
+// import { json } from 'express';
 // const { route } = require("./warehouse");
 
 //Get Single Inventory Item
@@ -36,7 +39,24 @@ router.post('/', (req, res) => {
 			description: req.body.description
 		})
 	}
-	res.json(inventoryData)
-})
+
+});
+
+
+
 
 module.exports = router;
+
+
+
+
+
+
+
+// res.json(inventoryData)
+
+// fs.writeFileSync(
+// 	path.join(__dirname, '../data/inventory.json', 'utf8', function (err, data) {
+// 		data = JSON.parse(data);
+// 		console.log(data);
+// 		res.end(JSON.stringify(data));
