@@ -94,3 +94,25 @@
     line-height: $labelsLine;
   }
 }
+
+// Document margin / padding 
+
+@mixin mobile-margin {
+  margin: 0 1rem;
+};
+
+@mixin mobile-padding {
+  padding: 0 1rem;
+}
+
+@mixin tablet-padding {
+  padding: 0 1.5rem;
+}
+
+@mixin tablet-margin {
+  margin: 0 1.5rem;
+}
+
+@mixin desktop-margin {
+  padding: 0 9.25rem;
+}

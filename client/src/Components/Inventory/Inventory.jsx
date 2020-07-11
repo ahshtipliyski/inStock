@@ -7,6 +7,7 @@ import InventoryItem from '../InventoryItem/InventoryItem';
 class Inventory extends Component {
   render() {
     const inventory = this.props.inventory
+    // console.log(inventory)
     return (
       <>
         <div className="inventory">

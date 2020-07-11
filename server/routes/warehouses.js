@@ -17,11 +17,10 @@ router.get("/:id", (req, res) => {
 
 // Get request for ALL warehouse
 
+
 router.get('/', (req, res) => {
   res.json(warehouseData);
 })
-
-
 
 // Post creating a new warehouse 
 

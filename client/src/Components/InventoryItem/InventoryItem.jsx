@@ -1,8 +1,10 @@
+
 import React, { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 // import '../Inventory/Inventory.scss';
 import '../InventoryItem/InventoryItem.scss'
 import kebabIcon from '../../Assets/Icons/Icon-kebab-default.svg';
+import { Link } from 'react-router-dom';
 
 
 
@@ -10,11 +12,16 @@ class InventoryItem extends Component {
 
   render() {
     const inventory = this.props.inventory
+    console.log(inventory)
+
     return (
       <>
         {
           inventory.map((inventory) => {
+            // console.log("this mapped ID", inventory.id)
+
             return(
+            <Link to={`/inventory/${inventory.id}`}>
             <div className="inventory__item" key={uuidv4()}>
               <h5 className="inventory__headings--text inventory__headings-hidden">ITEM</h5>
               <div className="inventory__product-container">
@@ -36,6 +43,7 @@ class InventoryItem extends Component {
                 <img src={kebabIcon} alt="Kebab Icon"/>
               </div>
             </div>
+            </Link>
             )
           })
         }

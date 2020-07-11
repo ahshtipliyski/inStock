@@ -5,23 +5,21 @@ import axios from 'axios';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import Inventory from '../src/Components/Inventory/Inventory';
 import Product from '../src/Components/Product/Product';
-import './App.scss';
-
 
 const urlW = 'http://localhost:8080'
-
 class App extends React.Component {
   state = {
     locationWarehouse: [],
-    inventory: []
+    inventory: [],
   }
+
 
   initialMount() {
     axios.get(`${urlW}/warehouses`)
       .then(res => {
         const locationWarehouse = res.data;
         this.setState({ locationWarehouse });
-        console.log(locationWarehouse)
+        // console.log(locationWarehouse)
       })
       .catch(error => {
         console.log(error)
@@ -30,7 +28,7 @@ class App extends React.Component {
       .then(res => {
         const inventory = res.data;
         this.setState({ inventory });
-        console.log(inventory)
+        // console.log(inventory)
       })
       .catch(error => {
         console.log(error)
@@ -41,9 +39,14 @@ class App extends React.Component {
     this.initialMount();
   }
 
+  componentDidUpdate(){
+    console.log(this.props)
+  }
+
+
   render() {
     return (
-      <div className="App">
+      <div>
         <Router>
           <Header />
           <Switch>
@@ -54,14 +57,20 @@ class App extends React.Component {
             <Route exact path="/inventory">
               <Inventory inventory={this.state.inventory} />
             </Route>
-            <Route exact path="/inventory/:id">
-              <Product />
-            </Route>
+       
+            {/* <Route path="/inventory/:id" >
+              <Product inventory={this.state.inventory}/>
+            </Route> */}
+            <Route path="/inventory/:id" render={(routeProps) => <Product warehouse={this.state.locationWarehouse} {...routeProps}/>}/>
           </Switch>
         </Router>
       </div>
     );
   }
 }
-
 export default App;
+
+
+
+
+
