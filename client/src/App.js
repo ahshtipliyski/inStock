@@ -50,7 +50,7 @@ class App extends React.Component {
         <Router>
           <Header />
           <Switch>
-          <Redirect exact from="/" to="/warehouses" />
+            <Redirect exact from="/" to="/warehouses" />
             <Route exact path="/warehouses">
               <Locations warehouse={this.state.locationWarehouse} />
             </Route>
