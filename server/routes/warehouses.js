@@ -4,7 +4,8 @@ const warehouseData = require('../data/warehouses.json');
 
 // Get request for ALL warehouse
 
-router.get('/' , (req, res) => {
+
+router.get('/', (req, res) => {
   res.json(warehouseData);
 })
 

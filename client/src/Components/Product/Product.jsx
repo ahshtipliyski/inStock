@@ -1,55 +1,108 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Product.scss'
+import axios from 'axios';
+import ArrowBack from '../../Assets/Icons/Icon-back-arrow.svg';
 
-export default function Product({inventory}) {
-  console.log(inventory)
-  return (
-    <section className="product">
+class Product extends React.Component {
+
+  state={
+    product:[]
+  }
+  
+  componentDidMount(){
+    const {...routeProps} = this.props
+    console.log(routeProps)
+    console.log(routeProps.match.params.id)
+
+    axios.get(`http://localhost:8080/inventory/${routeProps.match.params.id}`)
+    .then(res => {
+      const product = res.data.pop();
+      this.setState({product})
+
+      console.log(product)
+    })
+  }
+
+  render(){
+
+    const {product} = this.state
+    const {warehouse} = this.props
+    const stockStatus = product.isInstock
+    console.log(stockStatus) 
+    console.log(product)
+    // console.log(warehouse)
+    // console.log(warehouse.contact)
+
+     return(
+      <section className="product">
       <div className="product__header-container">
-        <h1 className="product__name">Product Name</h1>
-        <div>in stock img here</div>
-      </div>
-      <div className="product__info-body-container">
-          <div className="product__description-container">
-            <p className="product__info-title">Item Description</p>
-            <p className="product__info-content">item description here --- Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quibusdam ---- </p>
+        <div className="product__title-arrow-container">
+          <Link to="/inventory" className="product__arrow-container">
+            <img src={ArrowBack} alt="back arrow"/>
+          </Link>
+          <h1 className="product__name">{product.name}</h1>
+        </div>
+        <div className="product__badge-container">
+          <div className="product__stock-badge">
+            <p className="product__stock-info">{product.isInstock ? "In Stock" : "No Stock"}</p>
           </div>
-          <div className="product__order-info-container">
-            <div>
-              <div>
-                <p className="product__info-title">ORDERED BY</p>
-                <p className="product__info-content">Name</p>
-              </div>
-              <div>
-                <p className="product__info-title">REFERENCE NUMBER</p>
-                <p className="product__info-content">Reference ID</p>
-              </div>
+        </div>
+      </div>
+      {warehouse.map((warehouse) => {
+        if (product.warehouseId === warehouse.id){
+          return(
+          <div className="product__info-body-container">
+            <div className="product__description-container">
+              <p className="product__info-title">Item Description</p>
+              <p className="product__info-content">{product.description}</p>
             </div>
-            <div>
-              <div>
-                <p className="product__info-title">LAST ORDERED</p>
-                <p className="product__info-content">Date ordered here</p>
+            <div className="product__order-info-container">
+              <div className="product__horizontal-container">
+                <div className="product__orderedby-conatiner">
+                  <p className="product__info-title">ORDERED BY</p>
+                  <p className="product__info-content">{warehouse.contact.name}</p>
+                </div>
+                <div className="product__reference-container">
+                  <p className="product__info-title">REFERENCE NUMBER</p>
+                  <p className="product__info-content">{product.id}</p>
+                </div>
               </div>
-              <div>
-                <p className="product__info-title">LOCATION</p>
-                <p className="product__info-content">location here</p>
+              <div className="product__horizontal-container">
+                <div className="product__lastorder-container">
+                  <p className="product__info-title">LAST ORDERED</p>
+                  <p className="product__info-content">{product.lastOrdered}</p>
+                </div>
+                <div className="product__location-conatiner">
+                  <p className="product__info-title">LOCATION</p>
+                  <p className="product__info-content">{warehouse.address.location}</p>
+                </div>
               </div>
-            </div>
-            <div>
-                <p className="product__info-title">QUANTITY</p>
-                <p className="product__info-content">quantity number</p>
-            </div>
-            <div>
-              <p className="product__info-title">CATEGORIES</p>
-              <p className="product__info-content">Industrial, Automotive, etc.</p>
+              <div className="product__horizontal-container">
+                <div className="product__quantity-conatiner">
+                  <p className="product__info-title">QUANTITY</p>
+                  <p className="product__info-content">{product.quantity}</p>
+                </div>
+              </div>
+              <div className="product__horizontal-container">
+                <div className="product__categories-conatiner">
+                  <p className="product__info-title">CATEGORIES</p>
+                  <p className="product__info-content">{product.categories}</p>
+                </div>
+              </div>
             </div>
           </div>
+          )}
+      })}
+      <div className="product__btn-container">
+        <button>EDIT</button>
       </div>
-
-      <button>EDIT</button>
     </section>
-  )
+    )
+  }
 }
+
+export default Product;
 
 
 // The user must be able to view the details for a specific inventory item when an item is clicked from the list view. The user must have the ability to navigate to the edit item functionality from this view. The user can also navigate back to the inventory list view by clicking the inventory item name in this view.
