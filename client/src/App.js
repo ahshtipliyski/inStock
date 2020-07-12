@@ -49,7 +49,7 @@ class App extends React.Component {
 		console.log(this.props);
 	}
 
-	handleUpdateLocationWarehouses = (warehouses = []) => {
+	handleUpdateLocationWarehouses = (warehouses) => {
 		this.setState({
 			locationWarehouse: warehouses,
 		});
