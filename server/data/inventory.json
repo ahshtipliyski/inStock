@@ -118,5 +118,15 @@
     "isInstock": true,
     "categories": "Stationary, Pens",
     "warehouseId": "W5"
+  },
+  {
+    "id": "1594499857385",
+    "name": "motor",
+    "lastOrdered": "12/12/2019",
+    "city": "Oshawa",
+    "country": "Ontario",
+    "quantity": "1",
+    "isInstock": true,
+    "description": "cars and bikes"
   }
 ]
