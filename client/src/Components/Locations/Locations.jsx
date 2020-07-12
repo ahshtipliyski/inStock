@@ -1,4 +1,5 @@
 import React from "react";
+
 //import { Link } from 'react-router-dom';
 import { v4 as uuidv4 } from "uuid";
 import Modal from "react-modal";
@@ -8,6 +9,7 @@ import "../Locations/Locations.scss";
 import search from "../../Assets/Icons/Icon-search.svg";
 import arrow from "../../Assets/Icons/Icon-arrow-right.svg";
 import plus from "../../Assets/Icons/Icon-add.svg";
+
 
 Modal.setAppElement("#root");
 export default class Locations extends React.Component {
@@ -284,13 +286,13 @@ export default class Locations extends React.Component {
 								</div>
 							</div>
 							<div className='warehouse__arrow'>
-								{/* <Link to={'/locations/id/${id}'}> */}
-								<img
-									className='warehouse__arrow--right'
-									src={arrow}
-									alt='right arrow icon'
-								></img>
-								{/* </Link> */}
+								<Link to={`/warehouses/${warehouse.id}`}>
+									<img
+										className='warehouse__arrow--right'
+										src={arrow}
+										alt='right arrow icon'
+									></img>
+								</Link>
 							</div>
 						</div>
 					);
