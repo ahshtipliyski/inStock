@@ -1,97 +1,107 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+
+//import { Link } from 'react-router-dom';
+import { v4 as uuidv4 } from "uuid";
+import Modal from "react-modal";
+import axios from "axios";
+
 import "../Locations/Locations.scss";
 import search from "../../Assets/Icons/Icon-search.svg";
 import arrow from "../../Assets/Icons/Icon-arrow-right.svg";
 import plus from "../../Assets/Icons/Icon-add.svg";
-import { v4 as uuidv4 } from "uuid";
-import Modal from "react-modal";
 
 
 Modal.setAppElement("#root");
 export default class Locations extends React.Component {
-	constructor() {
-		super();
-		this.state = {
-			isClicked: false,
-			isOpen: false,
+	state = {
+		isClicked: false,
+		isOpen: false,
 
-			name: "",
-			address: "",
-			location: "Toronto",
-			contactname: "",
-			position: "",
-			phone: "",
-			email: "",
-			description: "",
-		};
-	}
+		name: "",
+		address: "",
+		location: "Toronto",
+		contactname: "",
+		position: "",
+		phone: "",
+		email: "",
+		description: "",
+	};
+
+	handleSubmit = (event) => {
+		event.preventDefault();
+
+		if (
+			!this.state.name ||
+			!this.state.address ||
+			!this.state.location ||
+			!this.state.contactname ||
+			!this.state.position ||
+			!this.state.phone ||
+			!this.state.email ||
+			!this.state.description
+		) {
+			alert("please fill out entire form");
+		} else {
+			axios
+				.post("http://localhost:8080/warehouses", {
+					name: this.state.name,
+					address: {
+						street: this.state.address,
+						location: this.state.location,
+					},
+					contact: {
+						name: this.state.contactname,
+						position: this.state.position,
+						phone: this.state.phone,
+						email: this.state.email,
+					},
+					inventoryCategories: this.state.description,
+				})
+				.then(
+					(res) => {
+						const { updateLocationWarehouses } = this.props;
+						updateLocationWarehouses(res.data);
+					},
+					(error) => {
+						console.log(error);
+					}
+				);
+
+			this.setState({ isOpen: false });
+			console.log("submitted successfully");
+			console.log(
+				this.state.name,
+				this.state.address,
+				this.state.location,
+				this.state.contactname,
+				this.state.position,
+				this.state.phone,
+				this.state.email,
+				this.state.description
+			);
+		}
+	};
+
+	handleChange = ({ target: { name, value } }) => {
+		this.setState({
+			[name]: value,
+		});
+	};
 
 	render() {
-		const warehouse = this.props.warehouse;
+		const { warehouse } = this.props;
 
-		const handleSubmit = (event) => {
-			event.preventDefault();
-
-			if (
-				!this.state.name ||
-				!this.state.address ||
-				!this.state.location ||
-				!this.state.contactname ||
-				!this.state.position ||
-				!this.state.phone ||
-				!this.state.email ||
-				!this.state.description
-			) {
-				console.log("please fill out entire form");
-			} else {
-				this.setState({ isOpen: false });
-				console.log("submitted successfully");
-				console.log(
-					this.state.name,
-					this.state.address,
-					this.state.location,
-					this.state.contactname,
-					this.state.position,
-					this.state.phone,
-					this.state.email,
-					this.state.description
-				);
-			}
-		};
-
-		const handleChange = (e) => {
-			const target = e.target;
-			const value = target.value;
-			const name = target.name;
-
-			this.setState({
-				[name]: value,
-			});
-		};
-
-		// function handleClick() {
-		//  this.setState({
-		//      isClicked: true,
-		//  });
-		// }
-
-		// console.log(warehouse);
-
-		// console.log(name)
-		//console.log(warehouse)
-
-		// console.log(name)
 		return (
 			<>
 				<div className='floating__button'>
-					<button
-						className='AddNew'
-						onClick={() => this.setState({ isOpen: true })}
-					>
-						<img src={plus} alt='' />
-						{this.state.isClicked}
-					</button>
+					{!this.state.isOpen && (
+						<button
+							className='AddNew'
+							onClick={() => this.setState({ isOpen: true })}
+						>
+							<img src={plus} alt='' />
+						</button>
+					)}
 
 					<Modal
 						className='modal__content'
@@ -100,14 +110,14 @@ export default class Locations extends React.Component {
 					>
 						<h1>Add New</h1>
 						<div className='modal'>
-							<form className='modal__form' onSubmit={handleSubmit}>
+							<form className='modal__form' onSubmit={this.handleSubmit}>
 								<div className='modal__inputcontainer modal--warehouse'>
 									<label className='modal__label' htmlFor='name'>
 										WAREHOUSE
 									</label>
 									<input
 										value={this.state.name}
-										onChange={handleChange}
+										onChange={this.handleChange}
 										className='warehouse__input'
 										name='name'
 										type='text'
@@ -124,7 +134,7 @@ export default class Locations extends React.Component {
 									<input
 										name='address'
 										value={this.state.address}
-										onChange={handleChange}
+										onChange={this.handleChange}
 										type='address'
 										placeholder='Enter Address'
 									/>
@@ -151,7 +161,7 @@ export default class Locations extends React.Component {
 									<input
 										name='contactname'
 										value={this.state.contactname}
-										onChange={handleChange}
+										onChange={this.handleChange}
 										type='text'
 										placeholder='Enter Name'
 									/>
@@ -164,7 +174,7 @@ export default class Locations extends React.Component {
 									<input
 										name='position'
 										value={this.state.position}
-										onChange={handleChange}
+										onChange={this.handleChange}
 										type='text'
 										placeholder='Enter Position'
 									/>
@@ -176,7 +186,7 @@ export default class Locations extends React.Component {
 									<input
 										name='phone'
 										value={this.state.phone}
-										onChange={handleChange}
+										onChange={this.handleChange}
 										type='phone'
 										placeholder='(000) - 000 - 0000'
 									/>
@@ -189,7 +199,7 @@ export default class Locations extends React.Component {
 									<input
 										name='email'
 										value={this.state.email}
-										onChange={handleChange}
+										onChange={this.handleChange}
 										type='email'
 										placeholder='email@instock.com'
 									/>
@@ -200,7 +210,7 @@ export default class Locations extends React.Component {
 									<textarea
 										type='text'
 										value={this.state.description}
-										onChange={handleChange}
+										onChange={this.handleChange}
 										name='description'
 										placeholder='Use commas to separate each category'
 									/>
