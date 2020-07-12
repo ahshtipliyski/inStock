@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Product.scss'
 import axios from 'axios';
+import { v4 as uuidv4 } from 'uuid';
 import ArrowBack from '../../Assets/Icons/Icon-back-arrow.svg';
 
 class Product extends React.Component {
@@ -52,7 +53,7 @@ class Product extends React.Component {
       {warehouse.map((warehouse) => {
         if (product.warehouseId === warehouse.id){
           return(
-          <div className="product__info-body-container">
+          <div key={uuidv4()} className="product__info-body-container">
             <div className="product__description-container">
               <p className="product__info-title">Item Description</p>
               <p className="product__info-content">{product.description}</p>

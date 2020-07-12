@@ -1,0 +1,37 @@
+@import '../../partials/mixins';
+@import '../../partials/color';
+@import '../../partials/typography';
+
+.remove {
+  &__button {
+    background-color: #FFFFFF;
+    outline: none;
+    position: absolute;
+    top: 30px;
+    right: 0;
+    color: #323232;
+    border-radius: 4px;
+    width: 180px;
+    text-align: start;
+    padding-left: 20px;
+    font-size: 16px;
+    font-family: 'Avenir-Regular';
+    border: 1px solid #E1E1E1;
+    @include tablet {
+      top: 68px;
+    }
+    @include desktop {
+      top: 60px;
+      width: 175px;
+    }
+  }
+  &__icon {
+    position: absolute;
+    top: -2px;
+    right: 8px;
+    @include tablet {
+      position: relative;
+      padding: 0 10px 0 12px;
+    }
+  }
+}
