@@ -39,7 +39,7 @@ class App extends React.Component {
     this.initialMount();
   }
 
-  componentDidUpdate(){
+  componentDidUpdate() {
     console.log(this.props)
   }
 
@@ -54,14 +54,17 @@ class App extends React.Component {
             <Route exact path="/warehouses">
               <Locations warehouse={this.state.locationWarehouse} />
             </Route>
+            {/* <Route path="/warehouses/id">
+              <Locations warehouse={this.state.locationWarehouse} />
+            </Route> */}
             <Route exact path="/inventory">
               <Inventory inventory={this.state.inventory} />
             </Route>
-       
+
             {/* <Route path="/inventory/:id" >
               <Product inventory={this.state.inventory}/>
             </Route> */}
-            <Route path="/inventory/:id" render={(routeProps) => <Product warehouse={this.state.locationWarehouse} {...routeProps}/>}/>
+            <Route path="/inventory/:id" render={(routeProps) => <Product warehouse={this.state.locationWarehouse} {...routeProps} />} />
           </Switch>
         </Router>
       </div>
