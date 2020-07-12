@@ -7,6 +7,7 @@ import InventoryItem from '../InventoryItem/InventoryItem';
 class Inventory extends Component {
   render() {
     const inventory = this.props.inventory
+    const { updateInventory } = this.props
     // console.log(inventory)
     return (
       <>
@@ -28,7 +29,7 @@ class Inventory extends Component {
             <h5 className="inventory__headings--text">STATUS</h5>
           </div>
         </div>
-        <InventoryItem inventory={inventory} />
+        <InventoryItem inventory={inventory} updateInventory={() => updateInventory()}/>
       </>
     )
   }

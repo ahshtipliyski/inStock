@@ -46,12 +46,18 @@ class App extends React.Component {
 	}
 
 	componentDidUpdate() {
-		console.log(this.props);
+		//console.log(this.props);
 	}
 
 	handleUpdateLocationWarehouses = (warehouses = []) => {
 		this.setState({
 			locationWarehouse: warehouses,
+		});
+	};
+
+	handleUpdateInventory = (inventories = []) => {
+		this.setState({
+			inventory: inventories,
 		});
 	};
 
@@ -69,7 +75,10 @@ class App extends React.Component {
 							/>
 						</Route>
 						<Route exact path='/inventory'>
-							<Inventory inventory={this.state.inventory} />
+							<Inventory 
+								inventory={this.state.inventory}
+								updateInventory={this.handleUpdateInventory}
+								/>
 						</Route>
 
 						{/* <Route path="/inventory/:id" >

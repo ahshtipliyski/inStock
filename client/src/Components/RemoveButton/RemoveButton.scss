@@ -4,7 +4,9 @@
 
 .remove {
   &__button {
+    z-index: 10;
     background-color: #FFFFFF;
+    cursor: pointer;
     outline: none;
     position: absolute;
     top: 30px;
@@ -26,6 +28,7 @@
     }
   }
   &__icon {
+    cursor: pointer;
     position: absolute;
     top: -2px;
     right: 8px;

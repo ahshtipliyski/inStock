@@ -1,29 +1,14 @@
 import React, { useState } from 'react';
 //import { ReactComponent as KebabIcon } from '../../Assets/Icons/Icon-kebab-default.svg';
 import './RemoveButton.scss'
-//import axios from 'axios';
 
-const urlW = 'http://localhost:8080'
 
-function RemoveButton() {
-
-  // deleteHandler() {
-  //   axios
-  //     .delete(`${urlW}/inventory/${this.props.deleteItem}`)
-  //     .then(res => {
-  //       console.log(res);
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     })
-  // }
+function RemoveButton({deleteHandler, deleteItem}) {
 
   const [toggled, toggle] = useState(false);
   return (
     <>
-      <div className="remove">{toggled && <button className="remove__button">Remove</button>}</div>
-        {/* <img src={kebabIcon} alt="Kebab Icon" className="remove__icon" onClick={() => toggle(toggled => !toggled)} /> */}
-        {/* <KebabIcon className="remove__icon" onClick={() => toggle(toggled => !toggled)} /> */}
+      <div className="remove">{toggled && <button onClick={() => deleteHandler(deleteItem)} className="remove__button">Remove</button>}</div>
         <svg
           margin="none"
           width="4"
