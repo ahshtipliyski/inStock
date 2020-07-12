@@ -1,6 +1,6 @@
 import React from "react";
 
-//import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import Modal from "react-modal";
 import axios from "axios";
@@ -9,7 +9,6 @@ import "../Locations/Locations.scss";
 import search from "../../Assets/Icons/Icon-search.svg";
 import arrow from "../../Assets/Icons/Icon-arrow-right.svg";
 import plus from "../../Assets/Icons/Icon-add.svg";
-
 
 Modal.setAppElement("#root");
 export default class Locations extends React.Component {

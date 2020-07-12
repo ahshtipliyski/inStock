@@ -49,13 +49,11 @@ class App extends React.Component {
 		console.log(this.props);
 	}
 
-
 	handleUpdateLocationWarehouses = (warehouses = []) => {
 		this.setState({
 			locationWarehouse: warehouses,
 		});
 	};
-
 
 	render() {
 		return (
@@ -74,31 +72,40 @@ class App extends React.Component {
 							<Inventory inventory={this.state.inventory} />
 						</Route>
 
-  render() {
-    return (
-      <div>
-        <Router>
-          <Header />
-          <Switch>
-            <Redirect exact from="/" to="/warehouses" />
-            <Route exact path="/warehouses">
-              <Locations warehouse={this.state.locationWarehouse} />
-            </Route>
-            {/* <Route path="/warehouses/id">
-              <Locations warehouse={this.state.locationWarehouse} />
-            </Route> */}
-            <Route exact path="/inventory">
-              <Inventory inventory={this.state.inventory} />
-            </Route>
-
-            {/* <Route path="/inventory/:id" >
+						{/* <Route path="/inventory/:id" >
               <Product inventory={this.state.inventory}/>
             </Route> */}
-            <Route path="/inventory/:id" render={(routeProps) => <Product warehouse={this.state.locationWarehouse} {...routeProps} />} />
-          </Switch>
-        </Router>
-      </div>
-    );
-  }
+						<Route
+							path='/inventory/:id'
+							render={(routeProps) => (
+								<Product
+									warehouse={this.state.locationWarehouse}
+									{...routeProps}
+								/>
+							)}
+						/>
+					</Switch>
+				</Router>
+			</div>
+		);
+	}
 }
+//   render() {
+//     return (
+//       <div>
+//         <Router>
+//           <Header />
+//           <Switch>
+//             <Redirect exact from="/" to="/warehouses" />
+//             <Route exact path="/warehouses">
+//               <Locations warehouse={this.state.locationWarehouse} />
+//             </Route>
+//             {/* <Route path="/warehouses/id">
+//               <Locations warehouse={this.state.locationWarehouse} />
+//             </Route> */}
+//             <Route exact path="/inventory">
+//               <Inventory inventory={this.state.inventory} />
+//             </Route>
+
+// }
 export default App;
