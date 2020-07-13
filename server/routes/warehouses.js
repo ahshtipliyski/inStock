@@ -1,33 +1,18 @@
 const express = require("express");
 const router = express.Router();
+const warehouseData = require('../data/warehouses.json');
+const inventoryData = require('../data/inventory.json')
+const fileName = '../server/data/warehouses.json';
+const fs = require('fs');
 
-const warehouseData = require("../data/warehouses.json");
-
-//Get single warehouse
-router.get("/:id", (req, res) => {
-	const found = warehouseData.some((location) => location.id === req.params.id);
-
-	if (found) {
-		res.json(warehouseData.filter((location) => location.id === req.params.id));
-	} else {
-		res.status(404).json({ err: `Warehouse id ${req.prams.id}` });
-	}
-});
-
-// const warehouseData = require('../data/warehouses.json');
-// const inventoryData = require('../data/inventory.json')
-// const fileName = '../server/data/warehouses.json';
-// const fs = require('fs');
-
-
-// Get request for ALL warehouse
+// Get request for ALL warehouse 
 
 router.get("/", (req, res) => {
 	res.json(warehouseData);
 });
 
 
-// Post creating a new warehouse
+// Post creating a new warehouse 
 
 router.post("/", (req, res) => {
 	if (
@@ -64,25 +49,24 @@ router.post("/", (req, res) => {
 //   res.json(warehouseData);
 // })
 
-// //Get single warehouse and inventory detials
-// router.get("/:id", (req, res) => {
-//   let warehouseId = req.params.id;
-//   let warehouseClicked = warehouseData.find((location) => {
-//     return location.id === warehouseId;
-//   });
-
-//   if (!warehouseClicked) {
-//     return res.status(404).json({
-//       "err": "Warehouse ID does not match"
-//     });
-//   } else {
-//     let warehouseClickedInventory = inventoryData.filter(item => {
-//       return item.warehouseId === warehouseId;
-//     });
-//     warehouseClicked.inventory = warehouseClickedInventory;
-//     return res.json(warehouseClicked)
-//   }
-// });
+//Get single warehouse and inventory detials
+router.get("/:id", (req, res) => {
+	let warehouseId = req.params.id;
+	let warehouseClicked = warehouseData.find((location) => {
+	  return location.id === warehouseId;
+	});
+	if (!warehouseClicked) {
+	  return res.status(404).json({
+		"err": "Warehouse ID does not match"
+	  });
+	} else {
+	  let warehouseClickedInventory = inventoryData.filter(item => {
+		return item.warehouseId === warehouseId;
+	  });
+	  warehouseClicked.inventory = warehouseClickedInventory;
+	  return res.json(warehouseClicked)
+	}
+  });
 
 // // Post creating a new warehouse 
 
