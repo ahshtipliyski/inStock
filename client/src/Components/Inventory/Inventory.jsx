@@ -55,9 +55,8 @@ class Inventory extends Component {
 				.then(
 					(res) => {
 						console.log(res)
-						const { updateInventory } = this.props; updateInventory(res.data)
-
-
+						const { updateInventory } = this.props; 
+					//	updateInventory(res.data);
 
 					},
 					(err) => {
