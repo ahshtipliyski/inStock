@@ -6,6 +6,7 @@ import search from "../../Assets/Icons/Icon-search.svg";
 import InventoryItem from "../InventoryItem/InventoryItem";
 import plus from "../../Assets/Icons/Icon-add.svg";
 
+
 Modal.setAppElement("#root");
 class Inventory extends Component {
 	state = {
@@ -39,6 +40,7 @@ class Inventory extends Component {
 	//       //axios POST goes here
 	//    }
 	// }
+	//
 
 	handleChange = ({ target: { name, value } }) => {
 		this.setState({
@@ -52,8 +54,8 @@ class Inventory extends Component {
 
 	render() {
 		const inventory = this.props.inventory;
-    const { updateInventory } = this.props
-		// console.log(inventory)
+    const { handleUpdateInventory } = this.props
+		//console.log(inventory)
 		return (
 			<>
 				<div className='floating__button'>
@@ -205,7 +207,7 @@ class Inventory extends Component {
 						<h5 className='inventory__headings--text'>STATUS</h5>
 					</div>
 				</div>
-				<InventoryItem inventory={inventory} updateInventory={updateInventory} />
+				<InventoryItem inventory={this.props.inventory} handleUpdateInventory={this.handleUpdateInventory} />
 			</>
 		);
 	}

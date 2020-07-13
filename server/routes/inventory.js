@@ -55,18 +55,29 @@ router.post('/', (req, res) => {
 //Delete Inventory Item
 
 router.delete("/:id", (req, res) => {
-	const found = inventoryData.some(item => item.id === req.params.id);
-	if (found) {
-		const newInventory = inventoryData.filter(item => item.id !== req.params.id);
-		res.json({
-			msg: `Deleted: ${req.params.id}`,
-			inventoryData: newInventory
-		})
-	} else {
-		res.status(404).json({
-			msg: `No item with ID: ${req.params.id}`
-		})
-	}
+
+	const id = req.params.id
+	const picked = inventoryData.find(o => o.id === id)
+	inventoryData.splice(picked, 1)
+	res.json(inventoryData)
+
+	// const found = inventoryData.some(item => item.id === req.params.id);
+	// if (found) {
+	// 	const newInventory = inventoryData.filter(item => item.id !== req.params.id);
+	// 	fs.writeFileSync(fileName, JSON.stringify(inventoryData), "utf8", err => {
+	// 		if (err) {
+	// 			console.log(err, "here");
+	// 		} 
+	// 	})
+	// 	res.json({
+	// 		msg: `Deleted: ${req.params.id}`,
+	// 		inventoryData: newInventory
+	// 	})
+	// } else {
+	// 	res.status(404).json({
+	// 		msg: `No item with ID: ${req.params.id}`
+	// 	})
+	// }
 })
 
 module.exports = router;

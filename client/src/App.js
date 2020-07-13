@@ -61,11 +61,12 @@ class App extends React.Component {
 		});
 	};
 
-	handleUpdateInventory = (inventory = []) => {
+	handleUpdateInventory = (inventories = []) => {
 		this.setState({
-			inventory: inventory,
+			inventory: inventories,
 		});
-	};
+	}; 
+
 
 	render() {
 		return (
@@ -83,7 +84,7 @@ class App extends React.Component {
 						<Route exact path='/inventory'>
 							<Inventory 
 								inventory={this.state.inventory}
-								updateInventory={this.state.handleUpdateInventory}
+								handleUpdateInventory={this.handleUpdateInventory}
 								/>
 						</Route>
 
