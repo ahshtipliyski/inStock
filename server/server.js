@@ -11,4 +11,5 @@ app.use(cors());
 app.use('/warehouses', warehouseRoutes);
 app.use('/inventory', inventoryRoutes);
 
+//fix
 app.listen(sPort, () => console.log(`Server listening on port: ${sPort}`));
