@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import Inventory from "../src/Components/Inventory/Inventory";
 import Product from "../src/Components/Product/Product";
+import Warehouse from '../src/Components/Warehouse/Warehouse';
 
 const urlW = "http://localhost:8080";
 class App extends React.Component {
@@ -93,6 +94,15 @@ class App extends React.Component {
 							path='/inventory/:id'
 							render={(routeProps) => (
 								<Product
+									warehouse={this.state.locationWarehouse}
+									{...routeProps}
+								/>
+							)}
+						/>
+						<Route
+							path='/warehouses/:id'
+							render={(routeProps) => (
+								<Warehouse
 									warehouse={this.state.locationWarehouse}
 									{...routeProps}
 								/>
