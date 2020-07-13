@@ -1,0 +1,70 @@
+@import '../../partials/mixins';
+@import '../../partials/color';
+@import '../../partials/fonts';
+
+.warehouseInfo {
+    @include mobile-margin;
+    border-bottom: 0;
+
+    @include tablet {
+        @include tablet-margin;
+    }
+
+    @include desktop {
+        @include desktop-margin;
+    }
+
+    &__title-arrow-container{
+        display: flex;
+        margin: 10% 0%;
+
+        @include tablet {
+            width: 100%;
+            height: 90px;
+            border-bottom: 1px solid $border;
+            margin: 2% 0% 4% 0%;
+            align-items: center;
+        }
+    }
+
+    &__title {
+        font-family: "Avenir-Bold";
+        padding-left: 20px;
+        margin: 0 ;
+
+        @include tablet {
+            font-size: 32px;
+        }
+    }
+
+    &__info-section-container{
+        @include tablet {
+            display: grid;
+            grid-template-columns: 45vw 45vw;
+        }
+        @include desktop {
+            grid-template-columns: 40vw 40vw;
+        }
+    }
+
+    &__info-titles {
+        color: $label-txt;
+        font-family: "Avenir-Demi";
+        margin: 0;
+    }
+
+    &__info-sub-container {
+        margin: 5% 0%;
+    }
+
+    &__info-text{
+        font-family: "Avenir-Regular";
+        margin: 0;
+    }
+
+    &__inventory-item-container {
+        height: auto;
+        padding: 20px;
+        background-color: $txt-bckgrd;
+    }
+}

@@ -1,0 +1,443 @@
+@import "../../partials/mixins";
+@import "../../partials/color";
+@import "../../partials/typography";
+
+.modal__content::-webkit-scrollbar {
+	width: 0px; /* For Chrome, Safari, and Opera */
+}
+.floating__button {
+	position: fixed;
+	bottom: 100px;
+	right: 60px;
+	z-index: 1;
+
+	@include desktop {
+		right: 100px;
+	}
+
+	.AddNew {
+		background-color: $CtaAndTextLik;
+		color: white;
+		border: none;
+		border-radius: 100px;
+		height: 1.5em;
+		width: 1.5em;
+		font-size: 3em;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		outline: none;
+	}
+}
+
+.ReactModal__Overlay--after-open {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.modal {
+	// display: flex;
+
+	&__select {
+		border: 2px solid $border;
+		border-radius: 4px;
+		height: 3em;
+		font-size: 1.3em;
+		padding: 0 2em;
+		background-color: $txt-bckgrd;
+		color: $para-txt;
+		margin-bottom: 1em;
+	}
+	// flex-wrap: wrap;
+	flex-direction: column;
+	&__form {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+
+		@include tablet {
+			flex-direction: row;
+			flex-wrap: wrap;
+		}
+	}
+
+	.modal--hidden {
+		// visibility: hidden;
+		display: none;
+
+		@include tablet {
+			visibility: hidden;
+			display: block;
+		}
+	}
+
+	.modal--right {
+		@include tablet {
+			margin-right: 3em;
+		}
+	}
+
+	// .modal--warehouse {
+	//  @include tablet {
+	//     width: 40%;
+	//     display: block;
+	//  }
+	// }
+
+	// .warehouse__input {
+	//  width: 100%;
+	// }
+
+	.description__input {
+		width: 99%;
+		margin-bottom: 1em;
+
+		textarea {
+			border: 2px solid $border;
+			background-color: $txt-bckgrd;
+			resize: none;
+			height: 6em;
+			border-radius: 6px;
+			@include paragraph;
+		}
+	}
+
+	&__inputcontainer {
+		display: flex;
+		flex-direction: column;
+		// margin: 0 1em 0 0;
+
+		@include tablet {
+			width: 46%;
+		}
+	}
+
+	&__buttons {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		@include tablet {
+			flex-direction: row-reverse;
+			margin: 1em 1em 0 0;
+		}
+	}
+
+	&__save {
+		height: 2.5em;
+		font-size: 1.5em;
+		font-weight: 600;
+		border: none;
+		border-radius: 6px;
+		background-color: $CtaAndTextLik;
+		color: white;
+		margin-bottom: 1em;
+
+		@include tablet {
+			width: 30%;
+		}
+	}
+
+	&__cancel {
+		height: 2.5em;
+		font-size: 1.5em;
+		font-weight: 600;
+		border: none;
+		border-radius: 6px;
+		background-color: white;
+		color: $CtaAndTextLik;
+		margin-bottom: 1em;
+
+		@include tablet {
+			width: 30%;
+		}
+	}
+
+	&__content {
+		// width: 100%;
+
+		// max-height: 100vh;
+		max-height: calc(100vh - 10px);
+		overflow-y: auto;
+		z-index: 11;
+		// margin: 1em;
+
+		@include tablet {
+			width: 80%;
+			height: 80%;
+			flex-direction: row;
+			border-radius: 6px;
+			position: fixed;
+			top: 10%;
+			left: 6%;
+			padding: 1em 3em;
+		}
+
+		@include desktop {
+			width: 50%;
+			height: 85%;
+			flex-direction: row;
+			border-radius: 6px;
+			position: fixed;
+			top: 10%;
+			left: 20%;
+			padding: 1em 3em;
+		}
+
+		background-color: white;
+		padding: 1em;
+		label {
+			color: $label-txt;
+			font-size: 1.3em;
+			font-weight: 600;
+			margin-bottom: 0.5em;
+		}
+		input {
+			height: 1em;
+			background-color: $txt-bckgrd;
+			border-radius: 4px;
+			border: 2px solid $border;
+			color: $para-txt;
+			padding: 1em;
+			margin-bottom: 1em;
+			font-size: 1.3em;
+		}
+	}
+}
+
+//Header for warehouse's
+
+.location {
+	display: flex;
+	margin: 0 1rem;
+	@include tablet {
+		display: flex;
+	}
+
+	@include desktop {
+		height: 180px;
+		flex-direction: column;
+	}
+
+	&__container {
+		height: 140px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+
+		@include tablet {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-between;
+			width: 45rem;
+			margin: 0 auto;
+			height: 120px;
+		}
+		@include desktop {
+			width: 67.5rem;
+		}
+	}
+
+	&__title {
+		font-family: "Avenir-Bold";
+		font-size: 1.7rem;
+		margin: 0;
+		// margin-top: 4rem;
+		@include tablet {
+			font-size: 2rem;
+		}
+	}
+
+	&__search {
+		margin-top: 16px;
+		margin-bottom: 16px;
+		margin-left: -16px;
+
+		&--icon {
+			position: relative;
+			left: 25px;
+			top: 5px;
+		}
+
+		&--input {
+			border-radius: 2px;
+			border: 1px solid $border;
+			height: 36px;
+			padding-left: 30px;
+		}
+	}
+
+	&__headings {
+		display: none;
+		text-transform: uppercase;
+
+		@include desktop {
+			margin-left: 4%;
+			width: 67.5rem;
+			display: grid;
+			grid-template-columns: 26% 26% 29% 20%;
+			margin: 0 auto;
+		}
+	}
+	&__headings--text {
+		padding: 0;
+		font-family: "Avenir-Demi";
+		color: #d1d1d1;
+		@include tablet {
+			display: none;
+			width: 6.25rem;
+			font-size: 0.75rem;
+		}
+		@include desktop {
+			display: flex;
+			width: 14rem;
+		}
+	}
+}
+
+//Warehouse list
+
+.warehouse {
+	@include mobile-margin;
+	position: relative;
+	border-bottom: 0.063rem solid #d1d1d1;
+	padding-bottom: 20px;
+	display: flex;
+	justify-content: space-between;
+
+	@include tablet {
+		display: flex;
+		width: 45rem;
+		margin: 0 auto;
+		align-items: center;
+		height: 130px;
+	}
+	@include desktop {
+		width: 67.5rem;
+		height: auto;
+	}
+
+	&__container {
+		@include tablet {
+			display: flex;
+			flex-direction: column;
+
+			width: 90rem;
+		}
+		@include desktop {
+			display: flex;
+			flex-direction: row;
+			width: 135rem;
+		}
+	}
+
+	&__name {
+		@include desktop {
+			width: 18rem;
+			margin: 0;
+			padding: 0;
+		}
+		&--title {
+			font-size: $h2Header-mobile;
+			line-height: $h2Line-mobile;
+			@include tablet {
+				@include h3Header;
+				margin: 5% 0% 0% 0%;
+			}
+		}
+
+		&--address {
+			font-size: $paragraph-mobile;
+			line-height: $paragraphLine-mobile;
+			@include tablet {
+				@include listContact;
+			}
+		}
+	}
+
+	&__info-container {
+		margin: 10px 0px;
+		@include tablet {
+			margin: 0;
+		}
+	}
+
+
+	&__details {
+		@include tablet {
+			display: grid;
+			grid-template-columns: 30vw 30vw 30vw;
+		}
+		@include desktop {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			// width: 112rem;
+			// padding-left: 16.25rem;
+		}
+	}
+
+	&__contact {
+		font-size: $paragraph-mobile;
+		line-height: $paragraphLine-mobile;
+		margin: 10px 0px;
+		@include tablet {
+			@include listContact;
+		}
+		@include desktop {
+			width: 160px;
+			// margin-left: 116px;
+		}
+
+		&--position {
+			font-style: italic;
+		}
+	}
+
+	&__contactInfo {
+		font-size: $paragraph-mobile;
+		line-height: $paragraphLine-mobile;
+		margin: 10px 0px;
+
+		@include tablet {
+			@include listContact;
+		}
+		@include desktop {
+			width: 160px;
+			margin-left: 116px;
+		}
+	}
+
+	&__categories {
+		font-size: $paragraph-mobile;
+		line-height: $paragraphLine-mobile;
+		@include tablet {
+			@include listContact;
+			display: flex;
+			align-items: center;
+			width: 180px;
+		
+		}
+		@include desktop {
+			width: 160px;
+			margin-left: 150px;
+		}
+	}
+
+	&__arrow {
+		@include mobile {
+			display: flex;
+			padding-top: 15px;
+			padding-right: 20px;
+		}
+		display: none;
+	}
+}
+
+p {
+	margin: 0;
+}
