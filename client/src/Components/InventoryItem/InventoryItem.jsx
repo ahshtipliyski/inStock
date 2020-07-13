@@ -3,11 +3,29 @@ import { v4 as uuidv4 } from 'uuid';
 import '../InventoryItem/InventoryItem.scss';
 import RemoveButton from '../RemoveButton/RemoveButton';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
-
+const urlW = "http://localhost:8080";
 
 class InventoryItem extends Component {
-
+  state = {
+    inventoryData: []
+  }
+  deleteHandler(deleteItem) {
+    //const inventory = this.props.inventory
+    axios
+    .delete(`${urlW}/inventory/${deleteItem}`)
+    .then((res) => {
+      const inventory = res.data;
+      const { updateInventory } = this.props;
+      console.log(res.data)
+      //updateInventory(res.data)
+      // this.setState(updateInventory(inventory));
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  }
   render() {
     const inventory = this.props.inventory
     //console.log(inventory)
@@ -38,7 +56,7 @@ class InventoryItem extends Component {
                 ? <p>In Stock</p> 
                 : <p>Out of stock</p>}
                 </div>
-                <RemoveButton />
+                <RemoveButton deleteHandler={() => this.deleteHandler(inventory.id)} />
               </div>
             )
           })
