@@ -20,6 +20,7 @@ class Inventory extends Component {
 		checked: false,
 		itemDescription: "",
 	};
+	
 
 	// handleSubmit = (event) => {
 	//   event.preventDefault();
