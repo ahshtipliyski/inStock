@@ -53,11 +53,11 @@ router.post('/', (req, res) => {
 //Delete Inventory Item
 
 router.delete("/:id", (req, res) => {
-
-	const id = req.params.id
-	const picked = inventoryData.find(item => item.id === id)
-	inventoryData.splice(picked, 1)
-	res.json(inventoryData)
+    const id = req.params.id
+    const selected = inventoryData.find(item => item.id === id)
+    for( let i = 0; i < inventoryData.length; i++)
+    { if ( inventoryData[i] === selected) { inventoryData.splice(i, 1); }}
+    res.json(inventoryData)
 })
 
 module.exports = router;
