@@ -58,7 +58,6 @@ router.delete("/:id", (req, res) => {
 	const found = inventoryData.some(item => item.id === req.params.id);
 	if (found) {
 		const newInventory = inventoryData.filter(item => item.id !== req.params.id);
-		fs.writeFileSync(fileName, JSON.stringify(json, null, 2));
 		res.json({
 			msg: `Deleted: ${req.params.id}`,
 			inventoryData: newInventory

@@ -46,7 +46,12 @@ class App extends React.Component {
 	}
 
 	componentDidUpdate() {
-		//console.log(this.props);
+		// axios.get('http://localhost:8080/inventory')
+		// 	.then (res => {
+		// 	const inventory = res.data
+		// 	//console.log(inventory)
+		// 	this.setState({inventory})
+		// })
 	}
 
 	handleUpdateLocationWarehouses = (warehouses = []) => {
@@ -55,9 +60,9 @@ class App extends React.Component {
 		});
 	};
 
-	handleUpdateInventory = (inventories = []) => {
+	handleUpdateInventory = (inventory = []) => {
 		this.setState({
-			inventory: inventories,
+			inventory: inventory,
 		});
 	};
 
@@ -77,7 +82,7 @@ class App extends React.Component {
 						<Route exact path='/inventory'>
 							<Inventory 
 								inventory={this.state.inventory}
-								updateInventory={this.handleUpdateInventory}
+								updateInventory={this.state.handleUpdateInventory}
 								/>
 						</Route>
 

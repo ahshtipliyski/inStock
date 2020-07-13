@@ -9,7 +9,7 @@ const urlW = "http://localhost:8080";
 
 class InventoryItem extends Component {
   state = {
-    inventory: []
+    inventoryData: []
   }
   deleteHandler(deleteItem) {
     //const inventory = this.props.inventory
@@ -18,15 +18,13 @@ class InventoryItem extends Component {
     .then((res) => {
       const inventory = res.data;
       const { updateInventory } = this.props;
-      this.setState(updateInventory());
-      console.log(inventory)
-      
+      console.log(res.data)
+      //updateInventory(res.data)
       // this.setState(updateInventory(inventory));
     })
     .catch(err => {
       console.log(err);
     });
-    console.log("hello", deleteItem)
   }
   render() {
     const inventory = this.props.inventory

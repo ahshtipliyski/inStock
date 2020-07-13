@@ -29,7 +29,7 @@ class Inventory extends Component {
             <h5 className="inventory__headings--text">STATUS</h5>
           </div>
         </div>
-        <InventoryItem inventory={inventory} updateInventory={() => updateInventory()}/>
+        <InventoryItem inventory={inventory} updateInventory={updateInventory}/>
       </>
     )
   }
