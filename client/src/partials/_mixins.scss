@@ -113,6 +113,10 @@
   margin: 0 1.5rem;
 }
 
-@mixin desktop-margin {
+@mixin desktop-padding {
   padding: 0 9.25rem;
+}
+
+@mixin desktop-margin {
+  margin: 0 9.25rem;
 }

@@ -9,33 +9,27 @@ const urlW = "http://localhost:8080";
 
 class InventoryItem extends Component {
   state = {
-    inventoryData: []
+    inventory: []
   }
+
   deleteHandler(deleteItem) {
-    //const inventory = this.props.inventory
     axios
     .delete(`${urlW}/inventory/${deleteItem}`)
     .then((res) => {
       const inventory = res.data;
-      const { updateInventory } = this.props;
-      console.log(res.data)
-      //updateInventory(res.data)
-      // this.setState(updateInventory(inventory));
+      window.location.reload(false);
     })
     .catch(err => {
       console.log(err);
     });
   }
+  
   render() {
     const inventory = this.props.inventory
-    //console.log(inventory)
-
     return (
       <>
         {
           inventory.map((inventory) => {
-            // console.log("this mapped ID", inventory.id)
-
             return(
               <div className="inventory__item" key={uuidv4()}>
                 <h5 className="inventory__headings--text inventory__headings-hidden">ITEM</h5>

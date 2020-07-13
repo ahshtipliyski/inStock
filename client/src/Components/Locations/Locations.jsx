@@ -261,12 +261,11 @@ export default class Locations extends React.Component {
 							<div className='warehouse__container'>
 								<div className='warehouse__name'>
 									<h2 className='warehouse__name--title'>{warehouse.name}</h2>
-									<p className='warehouse__name--address'>
-										{warehouse.address.street}
-									</p>
-									<p className='warehouse__name--address'>
-										{warehouse.address.location}
-									</p>
+									<div className="warehouse__info-container">
+										<p className='warehouse__name--address'>
+											{warehouse.address.street}, {warehouse.address.location}
+										</p>
+									</div>
 								</div>
 								<div className='warehouse__details'>
 									<div className='warehouse__contact'>

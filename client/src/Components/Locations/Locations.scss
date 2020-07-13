@@ -214,17 +214,28 @@
 	display: flex;
 	margin: 0 1rem;
 	@include tablet {
-		flex-wrap: wrap;
-		margin: 1.5rem;
+		display: flex;
+	}
+
+	@include desktop {
+		height: 180px;
+		flex-direction: column;
 	}
 
 	&__container {
+		height: 140px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+
 		@include tablet {
 			display: flex;
 			flex-direction: row;
+			align-items: center;
 			justify-content: space-between;
 			width: 45rem;
 			margin: 0 auto;
+			height: 120px;
 		}
 		@include desktop {
 			width: 67.5rem;
@@ -233,9 +244,9 @@
 
 	&__title {
 		font-family: "Avenir-Bold";
-		font-size: 1.5rem;
+		font-size: 1.7rem;
 		margin: 0;
-		margin-top: 4rem;
+		// margin-top: 4rem;
 		@include tablet {
 			font-size: 2rem;
 		}
@@ -243,11 +254,8 @@
 
 	&__search {
 		margin-top: 16px;
-		margin-bottom: 32px;
+		margin-bottom: 16px;
 		margin-left: -16px;
-		@include tablet {
-			margin-top: 2rem;
-		}
 
 		&--icon {
 			position: relative;
@@ -266,14 +274,12 @@
 	&__headings {
 		display: none;
 		text-transform: uppercase;
-		@include tablet {
-			display: flex;
-			width: 45rem;
-			flex-direction: row;
-			margin: 0 auto;
-		}
+
 		@include desktop {
+			margin-left: 4%;
 			width: 67.5rem;
+			display: grid;
+			grid-template-columns: 26% 26% 29% 20%;
 		}
 	}
 	&__headings--text {
@@ -283,27 +289,11 @@
 		@include tablet {
 			display: none;
 			width: 6.25rem;
-			margin-left: 1.5rem;
 			font-size: 0.75rem;
 		}
 		@include desktop {
 			display: flex;
-			margin-left: 6rem;
 			width: 14rem;
-		}
-	}
-	&__headings--text:first-of-type {
-		@include tablet {
-			width: 14rem;
-			margin-left: 0.1rem;
-		}
-		@include desktop {
-		}
-	}
-	&__headings--text:last-of-type {
-		@include tablet {
-			width: 8rem;
-			margin-left: 11rem;
 		}
 	}
 }
@@ -311,17 +301,23 @@
 //Warehouse list
 
 .warehouse {
-	margin: 1rem;
+	@include mobile-margin;
 	position: relative;
 	border-bottom: 0.063rem solid #d1d1d1;
+	padding-bottom: 20px;
+	display: flex;
+	justify-content: space-between;
+
 	@include tablet {
 		display: flex;
 		width: 45rem;
 		margin: 0 auto;
 		align-items: center;
+		height: 130px;
 	}
 	@include desktop {
 		width: 67.5rem;
+		height: auto;
 	}
 
 	&__container {
@@ -349,24 +345,31 @@
 			line-height: $h2Line-mobile;
 			@include tablet {
 				@include h3Header;
+				margin: 5% 0% 0% 0%;
 			}
 		}
 
 		&--address {
 			font-size: $paragraph-mobile;
 			line-height: $paragraphLine-mobile;
-			color: $label-txt;
 			@include tablet {
 				@include listContact;
 			}
 		}
 	}
 
+	&__info-container {
+		margin: 10px 0px;
+		@include tablet {
+			margin: 0;
+		}
+	}
+
+
 	&__details {
 		@include tablet {
-			display: flex;
-			flex-direction: row;
-			justify-content: space-between;
+			display: grid;
+			grid-template-columns: 30vw 30vw 30vw;
 		}
 		@include desktop {
 			display: flex;
@@ -380,7 +383,7 @@
 	&__contact {
 		font-size: $paragraph-mobile;
 		line-height: $paragraphLine-mobile;
-		color: $label-txt;
+		margin: 10px 0px;
 		@include tablet {
 			@include listContact;
 		}
@@ -397,7 +400,8 @@
 	&__contactInfo {
 		font-size: $paragraph-mobile;
 		line-height: $paragraphLine-mobile;
-		color: $label-txt;
+		margin: 10px 0px;
+
 		@include tablet {
 			@include listContact;
 		}
@@ -410,9 +414,12 @@
 	&__categories {
 		font-size: $paragraph-mobile;
 		line-height: $paragraphLine-mobile;
-		color: $label-txt;
 		@include tablet {
 			@include listContact;
+			display: flex;
+			align-items: center;
+			width: 180px;
+		
 		}
 		@include desktop {
 			width: 160px;
@@ -421,8 +428,15 @@
 	}
 
 	&__arrow {
+		@include mobile {
+			display: flex;
+			padding-top: 15px;
+			padding-right: 20px;
+		}
 		display: none;
-		@include mobile;
-		display: flex;
 	}
+}
+
+p {
+	margin: 0;
 }

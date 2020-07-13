@@ -25,7 +25,6 @@ class App extends React.Component {
 			.then((res) => {
 				const locationWarehouse = res.data;
 				this.setState({ locationWarehouse });
-				// console.log(locationWarehouse)
 			})
 			.catch((error) => {
 				console.log(error);
@@ -46,26 +45,18 @@ class App extends React.Component {
 		this.initialMount();
 	}
 
-	componentDidUpdate() {
-		// axios.get('http://localhost:8080/inventory')
-		// 	.then (res => {
-		// 	const inventory = res.data
-		// 	//console.log(inventory)
-		// 	this.setState({inventory})
-		// })
-	}
-
 	handleUpdateLocationWarehouses = (warehouses) => {
 		this.setState({
 			locationWarehouse: warehouses,
 		});
 	};
 
-	handleUpdateInventory = (inventory = []) => {
+	handleUpdateInventory = (inventories = []) => {
 		this.setState({
-			inventory: inventory,
+			inventory: inventories,
 		});
-	};
+	}; 
+
 
 	render() {
 		return (
@@ -85,11 +76,9 @@ class App extends React.Component {
 								inventory={this.state.inventory}
 								updateInventory={this.handleUpdateInventory}
 							/>
+
 						</Route>
 
-						{/* <Route path="/inventory/:id" >
-              <Product inventory={this.state.inventory}/>
-            </Route> */}
 						<Route
 							path='/inventory/:id'
 							render={(routeProps) => (
@@ -114,22 +103,5 @@ class App extends React.Component {
 		);
 	}
 }
-//   render() {
-//     return (
-//       <div>
-//         <Router>
-//           <Header />
-//           <Switch>
-//             <Redirect exact from="/" to="/warehouses" />
-//             <Route exact path="/warehouses">
-//               <Locations warehouse={this.state.locationWarehouse} />
-//             </Route>
-//             {/* <Route path="/warehouses/id">
-//               <Locations warehouse={this.state.locationWarehouse} />
-//             </Route> */}
-//             <Route exact path="/inventory">
-//               <Inventory inventory={this.state.inventory} />
-//             </Route>
 
-// }
 export default App;
