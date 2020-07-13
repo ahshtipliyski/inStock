@@ -39,7 +39,7 @@ class Inventory extends Component {
 	//       //axios POST goes here
 	//    }
 	// }
-	
+	//
 
 	handleChange = ({ target: { name, value } }) => {
 		this.setState({
