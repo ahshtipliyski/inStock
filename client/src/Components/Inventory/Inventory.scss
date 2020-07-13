@@ -1,97 +1,309 @@
-@import '../../partials/mixins';
-@import '../../partials/color';
-@import '../../partials/typography';
+@import "../../partials/mixins";
+@import "../../partials/color";
+@import "../../partials/typography";
 
+.modal__content::-webkit-scrollbar {
+	width: 0px; /* For Chrome, Safari, and Opera */
+}
+.floating__button {
+	position: fixed;
+	bottom: 100px;
+	right: 60px;
+	z-index: 1;
+
+	@include desktop {
+		right: 100px;
+	}
+
+	.AddNew {
+		background-color: $CtaAndTextLik;
+		color: white;
+		border: none;
+		border-radius: 100px;
+		height: 1.5em;
+		width: 1.5em;
+		font-size: 3em;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		outline: none;
+	}
+}
+
+.ReactModal__Overlay--after-open {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.modal {
+	// display: flex;
+
+	.switch__container {
+		label {
+			display: flex;
+			justify-content: space-between;
+			color: black;
+		}
+	}
+
+	&__select {
+		border: 2px solid $border;
+		border-radius: 4px;
+		height: 3em;
+		font-size: 1.3em;
+		padding: 0 2em;
+		background-color: $txt-bckgrd;
+		color: $para-txt;
+		margin-bottom: 1em;
+	}
+	// flex-wrap: wrap;
+	flex-direction: column;
+	&__form {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+
+		@include tablet {
+			flex-direction: row;
+			flex-wrap: wrap;
+		}
+	}
+
+	.modal--hidden {
+		// visibility: hidden;
+		display: none;
+
+		@include tablet {
+			visibility: hidden;
+			display: block;
+		}
+	}
+
+	.modal--right {
+		@include tablet {
+			margin-right: 3em;
+		}
+	}
+
+	// .modal--warehouse {
+	//  @include tablet {
+	//     width: 40%;
+	//     display: block;
+	//  }
+	// }
+
+	// .warehouse__input {
+	//  width: 100%;
+	// }
+
+	.description__input {
+		width: 99%;
+		margin-bottom: 1em;
+
+		textarea {
+			border: 2px solid $border;
+			background-color: $txt-bckgrd;
+			resize: none;
+			height: 6em;
+			border-radius: 6px;
+			@include paragraph;
+		}
+	}
+
+	&__inputcontainer {
+		display: flex;
+		flex-direction: column;
+		// margin: 0 1em 0 0;
+
+		@include tablet {
+			width: 46%;
+		}
+	}
+
+	&__buttons {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		@include tablet {
+			flex-direction: row-reverse;
+			margin: 1em 1em 0 0;
+		}
+	}
+
+	&__save {
+		height: 2.5em;
+		font-size: 1.5em;
+		font-weight: 600;
+		border: none;
+		border-radius: 6px;
+		background-color: $CtaAndTextLik;
+		color: white;
+		margin-bottom: 1em;
+
+		@include tablet {
+			width: 30%;
+		}
+	}
+
+	&__cancel {
+		height: 2.5em;
+		font-size: 1.5em;
+		font-weight: 600;
+		border: none;
+		border-radius: 6px;
+		background-color: white;
+		color: $CtaAndTextLik;
+		margin-bottom: 1em;
+
+		@include tablet {
+			width: 30%;
+		}
+	}
+
+	&__content {
+		// width: 100%;
+
+		// max-height: 100vh;
+		max-height: calc(100vh - 10px);
+		overflow-y: auto;
+		z-index: 11;
+		// margin: 1em;
+
+		@include tablet {
+			width: 80%;
+			height: 80%;
+			flex-direction: row;
+			border-radius: 6px;
+			position: fixed;
+			top: 10%;
+			left: 6%;
+			padding: 1em 3em;
+		}
+
+		@include desktop {
+			width: 50%;
+			height: 85%;
+			flex-direction: row;
+			border-radius: 6px;
+			position: fixed;
+			top: 10%;
+			left: 20%;
+			padding: 1em 3em;
+		}
+
+		background-color: white;
+		padding: 1em;
+		label {
+			color: $label-txt;
+			font-size: 1.3em;
+			font-weight: 600;
+			margin-bottom: 0.5em;
+		}
+		input {
+			height: 1em;
+			background-color: $txt-bckgrd;
+			border-radius: 4px;
+			border: 2px solid $border;
+			color: $para-txt;
+			padding: 1em;
+			margin-bottom: 1em;
+			font-size: 1.3em;
+		}
+	}
+}
 
 .inventory {
-  display: flex;
-  margin: 0 1rem;
-  @include tablet {
-    flex-wrap: wrap;
-    margin: 1.5rem;
-  }
-  &__container {
-    @include tablet {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      width: 45rem;
-      margin: 0 auto;
-    }
-    @include desktop {
-      width: 67.5rem;
-    }
-  }
+	display: flex;
+	margin: 0 1rem;
+	@include tablet {
+		flex-wrap: wrap;
+		margin: 1.5rem;
+	}
+	&__container {
+		@include tablet {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			width: 45rem;
+			margin: 0 auto;
+		}
+		@include desktop {
+			width: 67.5rem;
+		}
+	}
 
-  &__title {
-    font-family: 'Avenir-Bold';
-    font-size: 1.5rem;
-    margin: 0;
-    margin-top: 32px;
-    @include tablet {
-      font-size: 2rem;
-    }
-  }
+	&__title {
+		font-family: "Avenir-Bold";
+		font-size: 1.5rem;
+		margin: 0;
+		margin-top: 32px;
+		@include tablet {
+			font-size: 2rem;
+		}
+	}
 
-  &__search {
-    margin-top: 16px;
-    margin-bottom: 32px;
-    margin-left: -16px;
-    @include tablet {
-      margin-top: 2rem;
-    }
+	&__search {
+		margin-top: 16px;
+		margin-bottom: 32px;
+		margin-left: -16px;
+		@include tablet {
+			margin-top: 2rem;
+		}
 
-    &--icon {
-      position: relative;
-      left: 25px;
-      top: 5px;
-    }
+		&--icon {
+			position: relative;
+			left: 25px;
+			top: 5px;
+		}
 
-    &--input {
-      border-radius: 2px;
-      border: 1px solid $border;
-      height: 36px;
-      padding-left: 30px;
+		&--input {
+			border-radius: 2px;
+			border: 1px solid $border;
+			height: 36px;
+			padding-left: 30px;
+		}
+	}
 
-    }
-  }
-
-  &__headings {
-    display: none;
-    @include tablet {
-      display: flex;
-      width: 45rem;
-      flex-direction: row;
-      margin: 0 auto;
-    }
-    @include desktop {
-      width: 67.5rem;
-    }
-  }
-  &__headings--text {
-    @include tablet {
-      width: 6.25rem;
-      margin-left: 1.5rem;
-      font-size: 0.75rem;
-    }
-    @include desktop {
-      margin-left: 2.5rem;
-      width: 10.25rem;
-    }
-  }
-  &__headings--text:first-of-type {
-    @include tablet {
-      width: 14rem;
-      margin-left: 0.8rem;
-    }
-    @include desktop {
-      width: 18rem;
-    }
-  }
-  &__headings--text:last-of-type {
-    @include tablet {
-      width: 7.75rem;
-      margin-left: 0;
-    }
-  }
+	&__headings {
+		display: none;
+		@include tablet {
+			display: flex;
+			width: 45rem;
+			flex-direction: row;
+			margin: 0 auto;
+		}
+		@include desktop {
+			width: 67.5rem;
+		}
+	}
+	&__headings--text {
+		@include tablet {
+			width: 6.25rem;
+			margin-left: 1.5rem;
+			font-size: 0.75rem;
+		}
+		@include desktop {
+			margin-left: 2.5rem;
+			width: 10.25rem;
+		}
+	}
+	&__headings--text:first-of-type {
+		@include tablet {
+			width: 14rem;
+			margin-left: 0.8rem;
+		}
+		@include desktop {
+			width: 18rem;
+		}
+	}
+	&__headings--text:last-of-type {
+		@include tablet {
+			width: 7.75rem;
+			margin-left: 0;
+		}
+	}
 }

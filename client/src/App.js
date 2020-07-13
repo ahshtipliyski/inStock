@@ -54,7 +54,7 @@ class App extends React.Component {
 		// })
 	}
 
-	handleUpdateLocationWarehouses = (warehouses = []) => {
+	handleUpdateLocationWarehouses = (warehouses) => {
 		this.setState({
 			locationWarehouse: warehouses,
 		});
