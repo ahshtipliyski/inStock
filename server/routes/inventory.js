@@ -3,9 +3,7 @@ const router = express.Router();
 const inventoryData = require("../data/inventory.json");
 const fileName = '../server/data/inventory.json';
 const fs = require('fs');
-// import { dirname } from 'path';
-// import { json } from 'express';
-// const { route } = require("./warehouse");
+const uuid = require("uuid");
 
 //Get Single Inventory Item
 router.get("/:id", (req, res) => {
@@ -30,7 +28,7 @@ router.post('/', (req, res) => {
 		res.status(400).json({ err: "All fields need to be filled" });
 	} else {
 		inventoryData.push({
-			id: Date.now().toString(),
+			id: uuid.v4(),
 			name: req.body.name,
 			lastOrdered: req.body.lastOrdered,
 			city: req.body.city,
@@ -57,27 +55,9 @@ router.post('/', (req, res) => {
 router.delete("/:id", (req, res) => {
 
 	const id = req.params.id
-	const picked = inventoryData.find(o => o.id === id)
+	const picked = inventoryData.find(item => item.id === id)
 	inventoryData.splice(picked, 1)
 	res.json(inventoryData)
-
-	// const found = inventoryData.some(item => item.id === req.params.id);
-	// if (found) {
-	// 	const newInventory = inventoryData.filter(item => item.id !== req.params.id);
-	// 	fs.writeFileSync(fileName, JSON.stringify(inventoryData), "utf8", err => {
-	// 		if (err) {
-	// 			console.log(err, "here");
-	// 		} 
-	// 	})
-	// 	res.json({
-	// 		msg: `Deleted: ${req.params.id}`,
-	// 		inventoryData: newInventory
-	// 	})
-	// } else {
-	// 	res.status(404).json({
-	// 		msg: `No item with ID: ${req.params.id}`
-	// 	})
-	// }
 })
 
 module.exports = router;
