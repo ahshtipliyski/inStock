@@ -81,10 +81,10 @@ class App extends React.Component {
 							/>
 						</Route>
 						<Route exact path='/inventory'>
-							<Inventory 
+							<Inventory
 								inventory={this.state.inventory}
-								updateInventory={this.state.handleUpdateInventory}
-								/>
+								updateInventory={this.handleUpdateInventory}
+							/>
 						</Route>
 
 						{/* <Route path="/inventory/:id" >

@@ -5,6 +5,7 @@ import Switch from "react-switch";
 import search from "../../Assets/Icons/Icon-search.svg";
 import InventoryItem from "../InventoryItem/InventoryItem";
 import plus from "../../Assets/Icons/Icon-add.svg";
+import axios from 'axios';
 
 Modal.setAppElement("#root");
 class Inventory extends Component {
@@ -21,23 +22,58 @@ class Inventory extends Component {
 		itemDescription: "",
 	};
 
-	// handleSubmit = (event) => {
-	//   event.preventDefault();
+	handleSubmit = (event) => {
+		event.preventDefault();
 
-	//   if (
-	//     !this.state.product ||
-	//     !this.state.lastOrdered ||
-	//     !this.state.city ||
-	//     !this.state.country ||
-	//     !this.state.quantity ||
-	//    ) {
-	// alert("please fill out form")
+		if (
+			!this.state.product ||
+			!this.state.lastOrdered ||
+			!this.state.city ||
+			// !this.state.itemDescription ||
 
-	//    } else {
+			!this.state.quantity ||
+			// !this.state.isInstock
+			!this.state.country
+		) {
 
-	//       //axios POST goes here
-	//    }
-	// }
+			console.log("please fill out form");
+
+		} else {
+			axios
+				.post("http://localhost:8080/inventory", {
+					name: this.state.product,
+					lastOrdered: this.state.lastOrdered,
+					city: this.state.city,
+					country: this.state.country,
+					quantity: this.state.quantity,
+					isInstock: this.state.checked,
+					description: this.state.itemDescription,
+				})
+				.then(
+					(res) => {
+						console.log(res)
+						const { updateInventory } = this.props; updateInventory(res.data)
+
+
+
+					},
+					(err) => {
+						console.log(err);
+					}
+				);
+			this.setState({ isOpen: false });
+			console.log("submitted successfully");
+			console.log(
+				this.state.product,
+				this.state.lastOrdered,
+				this.state.city,
+				this.state.country,
+				this.state.quantity,
+				this.state.checked,
+				this.state.itemDescription
+			);
+		}
+	}
 
 	handleChange = ({ target: { name, value } }) => {
 		this.setState({
@@ -51,7 +87,7 @@ class Inventory extends Component {
 
 	render() {
 		const inventory = this.props.inventory;
-    const { updateInventory } = this.props
+		const { updateInventory } = this.props
 		// console.log(inventory)
 		return (
 			<>
@@ -204,10 +240,12 @@ class Inventory extends Component {
 						<h5 className='inventory__headings--text'>STATUS</h5>
 					</div>
 				</div>
-				<InventoryItem inventory={inventory} updateInventory={updateInventory} />
+				<InventoryItem inventory={inventory} />
 			</>
 		);
 	}
 }
+
+
 
 export default Inventory;
