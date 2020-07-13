@@ -56,8 +56,7 @@ class Inventory extends Component {
 					(res) => {
 						console.log(res)
 						const { updateInventory } = this.props; 
-					//	updateInventory(res.data);
-
+						window.location.reload(false);
 					},
 					(err) => {
 						console.log(err);
